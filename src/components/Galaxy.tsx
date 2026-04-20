@@ -17,6 +17,10 @@ interface GalaxyProps {
 // Reusable vector to avoid per-frame allocations
 const _targetPos = new THREE.Vector3();
 const _cameraTarget = new THREE.Vector3();
+const _offsetTarget = new THREE.Vector3();
+
+// Shift the orbit target right so the star lands at the left edge of the side panel
+const PANEL_OFFSET_X = 3.0;
 
 export function Galaxy({ books, onHoverBook, onClickBook, activeBook }: GalaxyProps) {
   const groupRef = useRef<THREE.Group>(null);
@@ -58,8 +62,10 @@ export function Galaxy({ books, onHoverBook, onClickBook, activeBook }: GalaxyPr
       const controls = controlsRef.current;
       const target = flyTo.current.target;
 
-      // Lerp OrbitControls target toward the star's world position — slow & cinematic
-      controls.target.lerp(target, 0.025);
+      // Lerp OrbitControls target toward the star, offset right so star sits at left edge of panel
+      _offsetTarget.copy(target);
+      _offsetTarget.x += PANEL_OFFSET_X;
+      controls.target.lerp(_offsetTarget, 0.025);
 
       // Move camera toward a position offset from the star (so we see it, not sit on it)
       _cameraTarget.copy(target);
@@ -73,7 +79,7 @@ export function Galaxy({ books, onHoverBook, onClickBook, activeBook }: GalaxyPr
       controls.update();
 
       // Stop animating once close enough
-      if (controls.target.distanceTo(target) < 0.05) {
+      if (controls.target.distanceTo(_offsetTarget) < 0.05) {
         flyTo.current.active = false;
       }
     }

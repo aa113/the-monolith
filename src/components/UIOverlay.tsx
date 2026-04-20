@@ -61,7 +61,7 @@ export function UIOverlay({ books, hoveredBook, activeBook, onClosePanel, onSele
             animate={{ x: 0, opacity: 1, scale: 1 }}
             exit={{ x: '120%', opacity: 0, scale: 0.95 }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="pointer-events-auto absolute right-6 top-6 bottom-6 w-full max-w-sm rounded-[2rem] border border-white/10 bg-white/[0.03] bg-gradient-to-b from-white/[0.08] to-transparent p-8 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] backdrop-blur-xl sm:w-96 flex flex-col overflow-y-auto [&::-webkit-scrollbar]:hidden"
+            className="pointer-events-auto absolute right-4 top-4 bottom-4 w-[22rem] max-w-[90vw] rounded-[1.5rem] border border-white/10 bg-white/[0.03] bg-gradient-to-b from-white/[0.08] to-transparent p-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] backdrop-blur-xl flex flex-col overflow-y-auto [&::-webkit-scrollbar]:hidden"
           >
             <button
               onClick={onClosePanel}
@@ -153,10 +153,10 @@ export function UIOverlay({ books, hoveredBook, activeBook, onClosePanel, onSele
       
       {/* Header/Title overlay */}
       <div className="absolute left-8 top-8 w-fit">
-        <h1 style={{ fontFamily: "'Anton', sans-serif" }} className="text-[2.85rem] tracking-[0.08em] leading-none text-white">
+        <h1 style={{ fontFamily: "'Anton', sans-serif" }} className="text-[2.2rem] tracking-[0.08em] leading-none text-white">
           THE MONOLITH
         </h1>
-        <p className="font-mono text-[11px] text-white/50 mt-1.5 w-full tracking-[0.28em] uppercase">Explore the universe of Sci-Fi</p>
+        <p className="font-mono text-[10px] text-white/50 mt-1.5 w-full tracking-[0.22em] uppercase">Explore the universe of Sci-Fi</p>
       </div>
     </div>
   );

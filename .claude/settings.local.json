@@ -12,7 +12,13 @@
       "mcp__Claude_in_Chrome__tabs_context_mcp",
       "Bash(node_modules/.bin/tsx scripts/generate-book-data.ts)",
       "Bash(npm run *)",
-      "Bash(node_modules/.bin/vite build *)"
+      "Bash(node_modules/.bin/vite build *)",
+      "Bash(gh --version)",
+      "Bash(ssh-keygen -y -f ~/.ssh/github-com/id_rsa)",
+      "Bash(ssh -T git@github.com)",
+      "Bash(ssh-keygen -t ed25519 -C \"aa113\" -f ~/.ssh/aa113_github -N \"\")",
+      "Bash(ssh-add -D)",
+      "Bash(ssh-add ~/.ssh/aa113_github)"
     ]
   }
 }
