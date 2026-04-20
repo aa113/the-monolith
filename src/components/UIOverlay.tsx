@@ -72,7 +72,7 @@ export function UIOverlay({ books, hoveredBook, activeBook, onClosePanel, onSele
 
             <div className="mt-2 flex flex-col items-center">
               {/* Image Placeholder or Actual Image */}
-              <div className="mb-6 flex h-56 w-40 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-inner backdrop-blur-md overflow-hidden">
+              <div className="mb-4 flex h-44 w-32 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-inner backdrop-blur-md overflow-hidden">
                 {activeBook.imageUrl ? (
                   <img src={activeBook.imageUrl} alt={activeBook.title} className="h-full w-full object-cover" referrerPolicy="no-referrer" />
                 ) : (
@@ -81,30 +81,30 @@ export function UIOverlay({ books, hoveredBook, activeBook, onClosePanel, onSele
               </div>
 
               {/* Title & Author */}
-              <h2 className="text-center font-sans text-3xl font-bold tracking-tight text-white">
+              <h2 className="text-center font-sans text-xl font-bold tracking-tight text-white">
                 {activeBook.title}
               </h2>
-              <p className="mt-1.5 text-center font-sans text-base text-white/60">
+              <p className="mt-1 text-center font-sans text-sm text-white/60">
                 {activeBook.author}
               </p>
             </div>
 
             {/* Stats - Plain text with dividers instead of boxes */}
-            <div className="mt-8 flex justify-center divide-x divide-white/10">
-              <div className="flex flex-col items-center px-5">
-                <div className="flex items-center gap-1.5">
-                  <span className="font-sans text-xl font-medium text-white">{activeBook.rating || '4.5'}</span>
-                  <Star size={16} className="text-yellow-400 fill-yellow-400" />
+            <div className="mt-5 flex justify-center divide-x divide-white/10">
+              <div className="flex flex-col items-center px-4">
+                <div className="flex items-center gap-1">
+                  <span className="font-sans text-base font-medium text-white">{activeBook.rating || '4.5'}</span>
+                  <Star size={13} className="text-yellow-400 fill-yellow-400" />
                 </div>
-                <span className="font-sans text-[11px] text-white/40 mt-1 uppercase tracking-widest">Rating</span>
+                <span className="font-sans text-[10px] text-white/40 mt-0.5 uppercase tracking-widest">Rating</span>
               </div>
-              <div className="flex flex-col items-center px-5">
-                <span className="font-sans text-xl font-medium text-white">{activeBook.genre || 'Sci-Fi'}</span>
-                <span className="font-sans text-[11px] text-white/40 mt-1 uppercase tracking-widest">Genre</span>
+              <div className="flex flex-col items-center px-4">
+                <span className="font-sans text-base font-medium text-white">{activeBook.genre || 'Sci-Fi'}</span>
+                <span className="font-sans text-[10px] text-white/40 mt-0.5 uppercase tracking-widest">Genre</span>
               </div>
-              <div className="flex flex-col items-center px-5">
-                <span className="font-sans text-xl font-medium text-white">{activeBook.year || '2020'}</span>
-                <span className="font-sans text-[11px] text-white/40 mt-1 uppercase tracking-widest">Year</span>
+              <div className="flex flex-col items-center px-4">
+                <span className="font-sans text-base font-medium text-white">{activeBook.year || '2020'}</span>
+                <span className="font-sans text-[10px] text-white/40 mt-0.5 uppercase tracking-widest">Year</span>
               </div>
             </div>
 
@@ -141,7 +141,7 @@ export function UIOverlay({ books, hoveredBook, activeBook, onClosePanel, onSele
                       onClick={() => onSelectBook(book)}
                       className="rounded-full bg-white/5 px-5 py-2 transition-all hover:bg-white/15 hover:scale-105 cursor-pointer"
                     >
-                      <span className="font-sans text-sm text-white/70">{book.title}</span>
+                      <span className="font-sans text-xs text-white/70">{book.title}</span>
                     </button>
                   ))}
                 </div>
