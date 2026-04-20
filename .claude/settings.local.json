@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_Preview__preview_start",
+      "Bash(npm install:*)",
+      "Bash(ls \"/Users/ayusharora/Documents/Experiments/Book:Movie Database/cosmos-of-knowledge/\"*.csv)",
+      "Bash(ls \"/Users/ayusharora/Documents/Experiments/Book:Movie Database/cosmos-of-knowledge/src/data/\"*.csv)",
+      "Bash(python3 -c ':*)",
+      "Bash(python3)",
+      "Bash(npx tsc:*)",
+      "Bash(node_modules/.bin/tsc --noEmit)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(node_modules/.bin/tsx scripts/generate-book-data.ts)",
+      "Bash(npm run *)",
+      "Bash(node_modules/.bin/vite build *)"
+    ]
+  }
+}
