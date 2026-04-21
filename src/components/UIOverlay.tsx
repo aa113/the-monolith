@@ -87,10 +87,6 @@ export function UIOverlay({ books, hoveredBook, activeBook, onClosePanel, onSele
                 <span className="font-sans text-[12px] font-medium text-white">{activeBook.genre || 'Sci-Fi'}</span>
                 <span className="font-sans text-[8px] text-white/40 uppercase tracking-widest">Genre</span>
               </div>
-              <div className="flex flex-col pl-3">
-                <span className="font-sans text-[12px] font-medium text-white">{activeBook.year || '2020'}</span>
-                <span className="font-sans text-[8px] text-white/40 uppercase tracking-widest">Year</span>
-              </div>
             </div>
 
             {/* Goodreads */}
@@ -148,10 +144,6 @@ export function UIOverlay({ books, hoveredBook, activeBook, onClosePanel, onSele
             <div className="flex flex-col items-center px-4">
               <span className="font-sans text-base font-medium text-white">{activeBook.genre || 'Sci-Fi'}</span>
               <span className="font-sans text-[10px] text-white/40 mt-0.5 uppercase tracking-widest">Genre</span>
-            </div>
-            <div className="flex flex-col items-center px-4">
-              <span className="font-sans text-base font-medium text-white">{activeBook.year || '2020'}</span>
-              <span className="font-sans text-[10px] text-white/40 mt-0.5 uppercase tracking-widest">Year</span>
             </div>
           </div>
 
