@@ -53,70 +53,69 @@ export function UIOverlay({ books, hoveredBook, activeBook, onClosePanel, onSele
       </button>
 
       {isMobile ? (
-        /* ── Mobile layout: horizontal strip ── */
-        <div className="flex flex-col h-full overflow-y-auto [&::-webkit-scrollbar]:hidden">
-          {/* Drag handle */}
-          <div className="flex justify-center pt-3 pb-2 shrink-0">
-            <div className="w-10 h-1 rounded-full bg-white/20" />
+        /* ── Mobile layout: full-height image left, details right ── */
+        <div className="flex h-full">
+          {/* Left: cover image spanning full panel height */}
+          <div className="w-28 shrink-0 overflow-hidden rounded-tl-[1.5rem]">
+            {activeBook.imageUrl
+              ? <img src={activeBook.imageUrl} alt={activeBook.title} className="h-full w-full object-cover" referrerPolicy="no-referrer" />
+              : <div className="h-full w-full bg-white/5 flex items-center justify-center"><ImageIcon size={24} className="text-white/20" /></div>}
           </div>
 
-          {/* Top row: image + title/stats */}
-          <div className="flex gap-3 px-4 pb-3 shrink-0">
-            <div className="flex h-20 w-14 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 overflow-hidden">
-              {activeBook.imageUrl
-                ? <img src={activeBook.imageUrl} alt={activeBook.title} className="h-full w-full object-cover" referrerPolicy="no-referrer" />
-                : <ImageIcon size={18} className="text-white/20" />}
+          {/* Right: details */}
+          <div className="flex flex-col flex-1 min-w-0 overflow-y-auto [&::-webkit-scrollbar]:hidden px-4 py-3">
+            {/* Drag handle */}
+            <div className="flex justify-center mb-2">
+              <div className="w-8 h-1 rounded-full bg-white/20" />
             </div>
-            <div className="flex flex-col justify-center min-w-0">
-              <h2 className="font-sans text-[12px] font-bold tracking-tight text-white leading-snug">
-                {activeBook.title}
-              </h2>
-              <p className="mt-0.5 font-sans text-[10px] text-white/60">{activeBook.author}</p>
-              <div className="mt-2 flex divide-x divide-white/10">
-                <div className="flex flex-col items-center pr-3">
-                  <div className="flex items-center gap-0.5">
-                    <span className="font-sans text-[11px] font-medium text-white">{activeBook.rating || '4.5'}</span>
-                    <Star size={8} className="text-yellow-400 fill-yellow-400" />
-                  </div>
-                  <span className="font-sans text-[8px] text-white/40 uppercase tracking-widest">Rating</span>
+
+            <h2 className="font-sans text-[13px] font-bold tracking-tight text-white leading-snug">
+              {activeBook.title}
+            </h2>
+            <p className="mt-1 font-sans text-[11px] text-white/50">{activeBook.author}</p>
+
+            {/* Stats */}
+            <div className="mt-3 flex divide-x divide-white/10">
+              <div className="flex flex-col pr-3">
+                <div className="flex items-center gap-1">
+                  <span className="font-sans text-[12px] font-medium text-white">{activeBook.rating || '4.5'}</span>
+                  <Star size={9} className="text-yellow-400 fill-yellow-400" />
                 </div>
-                <div className="flex flex-col items-center px-3">
-                  <span className="font-sans text-[11px] font-medium text-white">{activeBook.genre || 'Sci-Fi'}</span>
-                  <span className="font-sans text-[8px] text-white/40 uppercase tracking-widest">Genre</span>
-                </div>
-                <div className="flex flex-col items-center pl-3">
-                  <span className="font-sans text-[11px] font-medium text-white">{activeBook.year || '2020'}</span>
-                  <span className="font-sans text-[8px] text-white/40 uppercase tracking-widest">Year</span>
-                </div>
+                <span className="font-sans text-[8px] text-white/40 uppercase tracking-widest">Rating</span>
+              </div>
+              <div className="flex flex-col px-3">
+                <span className="font-sans text-[12px] font-medium text-white">{activeBook.genre || 'Sci-Fi'}</span>
+                <span className="font-sans text-[8px] text-white/40 uppercase tracking-widest">Genre</span>
+              </div>
+              <div className="flex flex-col pl-3">
+                <span className="font-sans text-[12px] font-medium text-white">{activeBook.year || '2020'}</span>
+                <span className="font-sans text-[8px] text-white/40 uppercase tracking-widest">Year</span>
               </div>
             </div>
-          </div>
 
-          {/* Goodreads + related */}
-          <div className="flex flex-col gap-2 px-4 pb-4">
+            {/* Goodreads */}
             <a
               href={getGoodreadsUrl(activeBook)}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-1.5 rounded-full border border-white/15 bg-white/5 py-2 font-sans text-[11px] text-white/80 transition-all hover:bg-white/15"
+              className="mt-3 flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 font-sans text-[11px] text-white/80 w-fit"
             >
-              <ExternalLink size={11} />
+              <ExternalLink size={10} />
               Go to Goodreads
             </a>
 
+            {/* Related books */}
             {relatedBooks.length > 0 && (
-              <div>
-                <h4 className="mb-1.5 text-center font-sans text-[9px] font-semibold uppercase tracking-widest text-white/40">
-                  More by {activeBook.author}
-                </h4>
-                <div className="flex flex-wrap justify-center gap-1.5">
+              <div className="mt-3">
+                <p className="font-sans text-[8px] text-white/30 uppercase tracking-widest mb-1.5">More by {activeBook.author}</p>
+                <div className="flex flex-wrap gap-1">
                   {relatedBooks.map(book => (
                     <button
                       key={book.id}
                       onClick={() => onSelectBook(book)}
-                      className="rounded-full bg-white/5 px-3 py-1 transition-all hover:bg-white/15 cursor-pointer"
+                      className="rounded-full bg-white/5 px-2.5 py-1 cursor-pointer"
                     >
-                      <span className="font-sans text-[10px] text-white/70">{book.title}</span>
+                      <span className="font-sans text-[10px] text-white/60">{book.title}</span>
                     </button>
                   ))}
                 </div>
@@ -221,7 +220,7 @@ export function UIOverlay({ books, hoveredBook, activeBook, onClosePanel, onSele
               animate={{ y: 0 }}
               exit={{ y: '100%' }}
               transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="pointer-events-auto absolute bottom-0 left-0 right-0 h-[30vh] rounded-t-[1.5rem] border-t border-white/10 bg-[#030303]/95 backdrop-blur-xl shadow-[0_-8px_32px_0_rgba(0,0,0,0.7)] overflow-hidden"
+              className="pointer-events-auto absolute bottom-0 left-0 right-0 h-[38vh] rounded-t-[1.5rem] border-t border-white/10 bg-[#030303]/95 backdrop-blur-xl shadow-[0_-8px_32px_0_rgba(0,0,0,0.7)] overflow-hidden"
             >
               {panelContent}
             </motion.div>
