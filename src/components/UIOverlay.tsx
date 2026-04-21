@@ -55,11 +55,13 @@ export function UIOverlay({ books, hoveredBook, activeBook, onClosePanel, onSele
       {isMobile ? (
         /* ── Mobile layout: full-height image left, details right ── */
         <div className="flex h-full">
-          {/* Left: cover image spanning full panel height */}
-          <div className="w-28 shrink-0 overflow-hidden rounded-tl-[1.5rem]">
-            {activeBook.imageUrl
-              ? <img src={activeBook.imageUrl} alt={activeBook.title} className="h-full w-full object-cover" referrerPolicy="no-referrer" />
-              : <div className="h-full w-full bg-white/5 flex items-center justify-center"><ImageIcon size={24} className="text-white/20" /></div>}
+          {/* Left: cover image with padding */}
+          <div className="w-28 shrink-0 flex items-center justify-center p-3">
+            <div className="h-full w-full rounded-xl overflow-hidden border border-white/10 bg-white/5">
+              {activeBook.imageUrl
+                ? <img src={activeBook.imageUrl} alt={activeBook.title} className="h-full w-full object-contain" referrerPolicy="no-referrer" />
+                : <div className="h-full w-full flex items-center justify-center"><ImageIcon size={24} className="text-white/20" /></div>}
+            </div>
           </div>
 
           {/* Right: details */}
