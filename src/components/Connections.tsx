@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react';
+import { useMemo, useRef, useState, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { Book } from '../data/books';
@@ -15,6 +15,13 @@ const _tempColor = new THREE.Color();
 
 export function Connections({ books, activeBook }: ConnectionsProps) {
   const linesRef = useRef<THREE.LineSegments>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   // Pre-build a lookup map for O(1) access
   const bookMap = useMemo(() => {
@@ -124,7 +131,7 @@ export function Connections({ books, activeBook }: ConnectionsProps) {
       <lineBasicMaterial
         vertexColors
         transparent
-        opacity={0.4}
+        opacity={isMobile ? 0.08 : 0.4}
         blending={THREE.AdditiveBlending}
         depthWrite={false}
       />
