@@ -221,7 +221,7 @@ export function UIOverlay({ books, hoveredBook, activeBook, onClosePanel, onSele
               animate={{ y: 0 }}
               exit={{ y: '100%' }}
               transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="pointer-events-auto absolute bottom-0 left-0 right-0 h-[62vh] rounded-t-[1.5rem] border-t border-white/10 bg-black/80 backdrop-blur-xl shadow-[0_-8px_32px_0_rgba(0,0,0,0.4)] overflow-hidden"
+              className="pointer-events-auto absolute bottom-0 left-0 right-0 h-[44vh] rounded-t-[1.5rem] border-t border-white/10 bg-black/80 backdrop-blur-xl shadow-[0_-8px_32px_0_rgba(0,0,0,0.4)] overflow-hidden"
             >
               {panelContent}
             </motion.div>
@@ -242,11 +242,11 @@ export function UIOverlay({ books, hoveredBook, activeBook, onClosePanel, onSele
       </AnimatePresence>
 
       {/* Header */}
-      <div className="absolute left-8 top-8 w-fit">
-        <h1 style={{ fontFamily: "'Anton', sans-serif" }} className="text-[2.2rem] tracking-[0.08em] leading-none text-white">
+      <div className="absolute top-5 left-0 right-0 flex flex-col items-center sm:items-start sm:left-8 sm:right-auto sm:top-8 w-full sm:w-fit">
+        <h1 style={{ fontFamily: "'Anton', sans-serif" }} className="text-[1.4rem] tracking-[0.08em] leading-none text-white sm:text-[2.2rem]">
           THE MONOLITH
         </h1>
-        <p className="font-mono text-[11.5px] text-white/50 mt-1.5 tracking-[0.32em] uppercase whitespace-nowrap">A Sci-Fi book library</p>
+        <p className="font-mono text-[8px] text-white/50 mt-1 tracking-[0.32em] uppercase whitespace-nowrap sm:text-[11.5px] sm:mt-1.5">A Sci-Fi book library</p>
       </div>
     </div>
   );
