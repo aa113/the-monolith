@@ -103,7 +103,7 @@ export function Connections({ books, activeBook }: ConnectionsProps) {
 
       for (const idx of prevActiveIndices.current) {
         const seg = segments[idx];
-        _tempColor.set(seg.sourceColor).lerp(WHITE_COLOR, pulse * 0.3);
+        _tempColor.set(seg.sourceColor).lerp(WHITE_COLOR, isMobile ? pulse * 0.8 : pulse * 0.3);
         const vi = idx * 2;
         colorAttr.setXYZ(vi, _tempColor.r, _tempColor.g, _tempColor.b);
         colorAttr.setXYZ(vi + 1, _tempColor.r, _tempColor.g, _tempColor.b);
