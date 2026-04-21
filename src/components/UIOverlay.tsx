@@ -221,7 +221,7 @@ export function UIOverlay({ books, hoveredBook, activeBook, onClosePanel, onSele
               animate={{ y: 0 }}
               exit={{ y: '100%' }}
               transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="pointer-events-auto absolute bottom-0 left-0 right-0 h-[44vh] rounded-t-[1.5rem] border-t border-white/10 bg-black/80 backdrop-blur-xl shadow-[0_-8px_32px_0_rgba(0,0,0,0.4)] overflow-hidden"
+              className="pointer-events-auto absolute bottom-0 left-0 right-0 h-[30vh] rounded-t-[1.5rem] border-t border-white/10 bg-black/80 backdrop-blur-xl shadow-[0_-8px_32px_0_rgba(0,0,0,0.4)] overflow-hidden"
             >
               {panelContent}
             </motion.div>
