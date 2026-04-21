@@ -156,7 +156,7 @@ export function UIOverlay({ books, hoveredBook, activeBook, onClosePanel, onSele
         <h1 style={{ fontFamily: "'Anton', sans-serif" }} className="text-[2.2rem] tracking-[0.08em] leading-none text-white">
           THE MONOLITH
         </h1>
-        <p style={{ textAlignLast: 'justify' }} className="font-mono text-[10px] text-white/50 mt-1.5 w-full uppercase">A Sci-Fi book library</p>
+        <p className="font-mono text-[12px] text-white/50 mt-1.5 w-full tracking-[0.46em] uppercase">A Sci-Fi book library</p>
       </div>
     </div>
   );
