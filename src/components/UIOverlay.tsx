@@ -54,24 +54,22 @@ export function UIOverlay({ books, hoveredBook, activeBook, onClosePanel, onSele
 
       {isMobile ? (
         /* ── Mobile layout: full-height image left, details right ── */
-        <div className="flex h-full">
-          {/* Left: cover image with padding */}
-          <div className="w-28 shrink-0 flex items-center justify-center p-3">
-            <div className="h-full w-full rounded-xl overflow-hidden border border-white/10 bg-white/5">
-              {activeBook.imageUrl
-                ? <img src={activeBook.imageUrl} alt={activeBook.title} className="h-full w-full object-contain" referrerPolicy="no-referrer" />
-                : <div className="h-full w-full flex items-center justify-center"><ImageIcon size={24} className="text-white/20" /></div>}
-            </div>
+        <div className="flex flex-col h-full">
+          <div className="flex justify-center pt-2 pb-1 shrink-0">
+            <div className="w-8 h-1 rounded-full bg-white/20" />
+          </div>
+        <div className="flex flex-1 min-h-0 px-3 pb-3 gap-3">
+          {/* Left: cover image — 2:3 aspect ratio, slightly less than panel height */}
+          <div className="shrink-0 rounded-xl overflow-hidden border border-white/10 bg-white/5"
+               style={{ height: 'calc(38vh - 2rem)', aspectRatio: '2/3' }}>
+            {activeBook.imageUrl
+              ? <img src={activeBook.imageUrl} alt={activeBook.title} className="h-full w-full object-cover" referrerPolicy="no-referrer" />
+              : <div className="h-full w-full flex items-center justify-center"><ImageIcon size={24} className="text-white/20" /></div>}
           </div>
 
           {/* Right: details */}
-          <div className="flex flex-col flex-1 min-w-0 overflow-y-auto [&::-webkit-scrollbar]:hidden px-4 py-3">
-            {/* Drag handle */}
-            <div className="flex justify-center mb-2">
-              <div className="w-8 h-1 rounded-full bg-white/20" />
-            </div>
-
-            <h2 className="font-sans text-[13px] font-bold tracking-tight text-white leading-snug">
+          <div className="flex flex-col flex-1 min-w-0 overflow-y-auto [&::-webkit-scrollbar]:hidden py-1">
+            <h2 className="font-sans text-[13px] font-bold tracking-tight text-white leading-snug line-clamp-2">
               {activeBook.title}
             </h2>
             <p className="mt-1 font-sans text-[11px] text-white/50">{activeBook.author}</p>
@@ -124,6 +122,7 @@ export function UIOverlay({ books, hoveredBook, activeBook, onClosePanel, onSele
               </div>
             )}
           </div>
+        </div>
         </div>
       ) : (
         /* ── Desktop layout: vertical panel ── */
