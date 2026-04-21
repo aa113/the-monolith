@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
@@ -19,13 +19,21 @@ const _targetPos = new THREE.Vector3();
 const _cameraTarget = new THREE.Vector3();
 const _offsetTarget = new THREE.Vector3();
 
-// Shift the orbit target right so the star lands at the left edge of the side panel
-const PANEL_OFFSET_X = 3.0;
+// Desktop: shift right so star sits left of the side panel
+const DESKTOP_OFFSET_X = 3.0;
+// Mobile: shift target down so star centres in the visible area above the bottom panel (44vh)
+const MOBILE_OFFSET_Y = -2.0;
 
 export function Galaxy({ books, onHoverBook, onClickBook, activeBook }: GalaxyProps) {
   const groupRef = useRef<THREE.Group>(null);
   const controlsRef = useRef<any>(null);
   const { pointer, camera } = useThree();
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 640);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   // Camera fly-to state
   const flyTo = useRef<{ target: THREE.Vector3; active: boolean }>({
@@ -62,9 +70,13 @@ export function Galaxy({ books, onHoverBook, onClickBook, activeBook }: GalaxyPr
       const controls = controlsRef.current;
       const target = flyTo.current.target;
 
-      // Lerp OrbitControls target toward the star, offset right so star sits at left edge of panel
+      // Lerp OrbitControls target toward the star with panel-aware offset
       _offsetTarget.copy(target);
-      _offsetTarget.x += PANEL_OFFSET_X;
+      if (isMobile) {
+        _offsetTarget.y += MOBILE_OFFSET_Y; // centre in visible area above bottom panel
+      } else {
+        _offsetTarget.x += DESKTOP_OFFSET_X; // left of right-side panel
+      }
       controls.target.lerp(_offsetTarget, 0.025);
 
       // Move camera toward a position offset from the star (so we see it, not sit on it)
